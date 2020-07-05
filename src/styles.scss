@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+body::before {
+  content: "";
+  height: 100%;
+  position: absolute;
+  background-position: center;
+  background-size: cover;
+  background: url("/assets/images/login.jpg");
+  //background-size: cover;
+  //background: rgb(165, 165, 162);
+  //background: -moz-linear-gradient(162deg, rgb(141, 141, 127) 0%, rgba(253,187,45,0.09567577030812324) 100%);
+  //background: -webkit-linear-gradient(162deg, rgb(43, 42, 40) 0%, rgba(253,187,45,0.09567577030812324) 100%);
+  // background: linear-gradient(162deg, rgb(90, 94, 94) 0%, rgba(253,187,45,0.09567577030812324) 100%);
+  //filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#22c1c3",endColorstr="#fdbb2d",GradientType=1);
+  background-repeat: repeat;
+  z-index: -1;
+  height: 150%;
+  width:100%; /* Using Glen Maddern's trick /via @mente */
+  background-size: cover;
+  /* don't forget to use the prefixes you need */
+  //transform: scale(3);
+  transform-origin: top left;
+  filter: blur(4px);
+}
+
+h1 {
+  text-align: center;
+}

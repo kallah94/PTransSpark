@@ -1,1 +1,61 @@
-<app-sessions></app-sessions>
+﻿<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+  <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/">Home</a>
+      <a class="nav-item nav-link" (click)="logout()">Logout</a>
+  </div>
+</nav>
+<!--
+<ng-sidebar-container style="position:absolute" >
+    <ng-sidebar [(opened)]="_opened" mode="push" animate="true">
+      <ul class="list-group-flush">Menu
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Porta ac consectetur ac</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Porta ac consectetur ac</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Porta ac consectetur ac</li>
+        <li class="list-group-item">
+          <ul class="list-group list-group-horizontal-sm">
+            <li class="list-group-item">
+              <button routerLink="/login" class="btn btn-outline-primary">
+                <fa-icon [icon]='falogin'></fa-icon>
+              </button>
+            </li>
+            <li class="list-group-item">
+              <button routerLink="/register"  class="btn btn-outline-success">
+                <fa-icon [icon]='faregister'></fa-icon>
+              </button>
+            </li>
+            <li class="list-group-item">
+              <button (click)="logout()" class="btn btn-outline-danger">
+                <fa-icon [icon]='falogout'></fa-icon>
+              </button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </ng-sidebar>
+
+    <div ng-sidebar-content>
+      <button class="btn btn-outline-primary" (click)="_toggleSidebar()"><fa-icon [icon]="faatom"></fa-icon></button>
+    </div>  
+</ng-sidebar-container>
+<br>
+-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+            <alert></alert>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

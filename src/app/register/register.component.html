@@ -1,0 +1,48 @@
+﻿<div class="card shadow-lg rounded login-form-flex" style="width: 27rem;">
+    <div class="card-img-top">
+        <img class="card-img-top img-responsive img-fluid w-100" src="/assets/images/login.jpg" alt="Card image cap">
+    </div>
+    <div class="card-body wrap-input">
+        <div class="card-text text-center">
+            <h2 class="card-title">Register</h2>
+        </div>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="input-icons">
+                <fa-icon [icon]='faname' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x' class="focus"></fa-icon>
+                <input type="text" formControlName="firstName" class="input100 input-field" placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                </div>
+            </div>
+            <div class="input-icons">
+                <fa-icon [icon]='faname' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x' class="focus"></fa-icon>
+                <input type="text" formControlName="lastName" class="input100 input-field" placeholder="Last Name" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                </div>
+            </div>
+            <div class="input-icons">
+                <fa-icon [icon]='fausername' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x' class="focus"></fa-icon>
+                <input type="text" formControlName="username" class="input100 input-field" placeholder="Username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
+            </div>
+            <div class="input-icons">
+                <fa-icon [icon]='fapassword' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x' class="focus"></fa-icon>
+                <input type="password" formControlName="password" class="input100 input-field" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Register
+                </button>
+                <a routerLink="/login" class="btn btn-link">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
