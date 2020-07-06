@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      
+
       <li class="nav-item">
         <button class="btn btn-outline-warning nav-item" routerLink="/">
           <fa-icon [icon]='fahome'></fa-icon>
@@ -24,14 +24,16 @@
     <ng-sidebar [(opened)]="_opened" position="right" mode="push" animate="true"
     closeOnClickOutside="true">
       <ul class="list-group-flush">
-        <li class="list-group-item">New Session</li>
-        <li class="list-group-item">Update Session</li>
-        <li class="list-group-item">Delete Session</li>
-        <li class="list-group-item">List sessions</li>
-        <li class="list-group-item">Create Statement</li>
-        <li class="list-group-item">New Batche</li>
-        <li class="list-group-item">New Job</li>
-        <li class="list-group-item">List Batches</li>
+        <li class="list-group-item shadow-lg mb-1 zoom active"><fa-icon [icon]=fasess [styles]="{'stroke': 'dark', 'color': 'dark'}" size='1x'></fa-icon> Session</li>
+        <li class="list-group-item shadow-lg mb-1 zoom sess"><fa-icon [icon]=fasession [styles]="{'stroke': 'dark', 'color': 'dark'}" size='1x'></fa-icon> New</li>
+        <li class="list-group-item shadow-lg mb-1 zoom sess"><fa-icon [icon]=faupdate [styles]="{'stroke': 'dark', 'color': 'dark'}" size='1x'></fa-icon> Update</li>
+        <li class="list-group-item shadow-lg mb-1 zoom sess"><fa-icon [icon]=fadelete [styles]="{'stroke': 'dark', 'color': 'dark'}" size='1x'> </fa-icon> Delete</li>
+        <li class="list-group-item shadow-lg mb-1 zoom sess"><fa-icon [icon]=falist [styles]="{'stroke': 'dark', 'color': 'dark'}" size='1x'> </fa-icon> List</li>
+        <li class="list-group-item shadow-lg mb-1 zoom active"><fa-icon [icon]=fasess [styles]="{'stroke': 'dark', 'color': 'dark'}" size='1x'></fa-icon>  Batche</li>
+        <li class="list-group-item shadow-lg mb-1 zoom sess"><fa-icon [icon]=fasession [styles]="{'stroke': 'gray', 'color': 'gray'}" size='1x'></fa-icon> New</li>
+        <li class="list-group-item shadow-lg mb-1 zoom sess"><fa-icon [icon]=faupdate [styles]="{'stroke': 'gray', 'color': 'gray'}" size='1x'></fa-icon> Update</li>
+        <li class="list-group-item shadow-lg mb-1 zoom sess"><fa-icon [icon]=fastatement [styles]="{'stroke': 'gray', 'color': 'gray'}" size='1x'></fa-icon> Job</li>
+        <li class="list-group-item shadow-lg mb-1 zoom sess"><fa-icon [icon]=falist [styles]="{'stroke': 'gray', 'color': 'gray'}" size='1x'> </fa-icon> List</li>
       </ul>
     </ng-sidebar>
 <!--
