@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { IUser } from 'src/user';
+import { ILivyUser } from 'src/app/_models/livyuser';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,8 +11,8 @@ export class SessionService {
   constructor(protected http: HttpClient) {}
   
   // Work
-  create_session(user: IUser): Observable<HttpResponse<IUser>> {
-    return this.http.post<IUser>(`${this.resourceUrl}/loginSession`, user, { observe: 'response'});
+  create_session(user: ILivyUser): Observable<HttpResponse<ILivyUser>> {
+    return this.http.post<ILivyUser>(`${this.resourceUrl}/loginSession`, user, { observe: 'response'});
   }
 
   // Work

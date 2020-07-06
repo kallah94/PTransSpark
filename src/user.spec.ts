@@ -1,7 +1,7 @@
-import { User } from './user';
+import { LivyUser } from './app/_models/livyuser';
 
 describe('User', () => {
   it('should create an instance', () => {
-    expect(new User()).toBeTruthy();
+    expect(new LivyUser()).toBeTruthy();
   });
 });

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from './session.service';
-import { User } from 'src/user';
+import { LivyUser } from 'src/app/_models/livyuser';
 import { Kinds } from 'src/kind.enum';
 
 @Component({
@@ -9,7 +9,7 @@ import { Kinds } from 'src/kind.enum';
   styleUrls: ['./sessions.component.scss']
 })
 export class SessionsComponent implements OnInit {
-  public user = new User()
+  public user = new LivyUser()
   constructor(
     protected sessionService: SessionService
   ) { }

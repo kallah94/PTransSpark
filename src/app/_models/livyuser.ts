@@ -1,6 +1,6 @@
-import { Kinds } from './kind.enum';
+import { Kinds } from '../../kind.enum';
 
-export interface IUser {
+export interface ILivyUser {
     kind?: Kinds;
     proxyUser?: string;
     driverMemory?: string,
@@ -12,7 +12,7 @@ export interface IUser {
     heartbeatTimeoutInSecond?: number;
 }
 
-export class User implements IUser {
+export class LivyUser implements ILivyUser {
         constructor(
             public kind?: Kinds,
             public proxyUser?: string,
