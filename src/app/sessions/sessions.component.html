@@ -1,5 +1,51 @@
-<button (click)="createSession()" class="text-danger">Login</button>
-<button (click)="infoSession()" class="text-danger">InfoSession</button>
-<button (click)="allsessions()" class="text-danger">Sessions</button>
-<button (click)="deleteSession()" class="text-danger">DeleteSession</button>
-<button (click)="createStatement()" class="text-danger">newStatement</button>
+<div class="card shadow-lg rounded login-form-flex" style="width: 43rem;">
+  <div class="card-img-top">
+      <img class="card-img-top img-responsive img-fluid w-100" src="/assets/images/login.jpg" alt="Card image cap">
+  </div>
+  <div class="card-body wrap-input">
+      <div class="card-text text-center">
+          <h2 class="card-title">Livy Session</h2>
+      </div>
+      <form [formGroup]="batcheForm" (ngSubmit)="onSubmit()">
+          <div class="input-icons">
+              <fa-icon [icon]='fapython' id="faicon" [styles]="{'stroke': 'blue', 'color': 'secondary'}" size='2x' class="focus"></fa-icon>
+              <input type="text" formControlName="file" class="input100 input-field" placeholder="python file" [ngClass]="{ 'is-invalid': submitted && f.file.errors }" />
+              <div *ngIf="submitted && f.file.errors" class="invalid-feedback">
+                  <div *ngIf="f.file.errors.required">File is required</div>
+              </div>
+          </div>
+          <div class="input-icons">
+              <fa-icon [icon]='fafile' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x' class="focus"></fa-icon>
+              <textarea ng-list formControlName="args" class="input100 input-field" placeholder="Arguments"></textarea>
+
+          </div>
+          <div class="input-icons">
+              <fa-icon [icon]='fafile' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x' class="focus"></fa-icon>
+              <input type="text" formControlName="driverMemory" class="input100 input-field" placeholder="Driver Memory" [ngClass]="{ 'is-invalid': submitted && f.driverMemory.errors }" />
+          </div>
+          <div class="input-icons">
+              <fa-icon [icon]='fafile' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x' class="focus"></fa-icon>
+              <input type="number" formControlName="driverCores" class="input100 input-field" placeholder="driverCores" />
+          </div>
+          <div class="input-icons">
+            <fa-icon [icon]='fafile' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x' class="focus"></fa-icon>
+            <input type="text" formControlName="executorMemory" class="input100 input-field" placeholder="executorMemory" />
+          </div>
+          <div class="input-icons">
+            <fa-icon [icon]='fafile' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x' class="focus"></fa-icon>
+            <input type="number" formControlName="numExecutors" class="input100 input-field" placeholder="numExecutors" />
+          </div>
+          <div class="input-icons">
+            <fa-icon [icon]='fafile' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x' class="focus"></fa-icon>
+            <input type="text" formControlName="name" class="input100 input-field" placeholder="name" />
+          </div>
+          <div class="form-group">
+              <button [disabled]="loading" class="btn btn-primary">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                  Submit
+              </button>
+              <a routerLink="/login" class="btn btn-link">Cancel</a>
+          </div>
+      </form>
+  </div>
+</div>

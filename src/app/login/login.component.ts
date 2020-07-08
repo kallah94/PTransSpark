@@ -2,12 +2,10 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { faUserCircle, faKey, faUserSecret, faCog, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
-import { faKeycdn } from '@fortawesome/free-brands-svg-icons';
+import { faUserCircle, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
 import { AlertService, AuthenticationService } from '../_services';
 
-@Component({ 
+@Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['login.component.scss']
@@ -18,8 +16,8 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
     submitted = false;
-    fausername = faUserCircle
-    fapassword = faShieldAlt
+    fausername = faUserCircle;
+    fapassword = faShieldAlt;
     returnUrl: string;
 
     constructor(
@@ -42,7 +40,7 @@ export class LoginComponent implements OnInit {
         });
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
     }
 
     // convenience getter for easy access to form fields

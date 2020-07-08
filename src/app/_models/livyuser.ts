@@ -3,7 +3,7 @@ import { Kinds } from '../../kind.enum';
 export interface ILivyUser {
     kind?: Kinds;
     proxyUser?: string;
-    driverMemory?: string,
+    driverMemory?: string;
     driverCores?: number;
     executorMemory?: string;
     executorCores?: number;
@@ -22,7 +22,7 @@ export class LivyUser implements ILivyUser {
             public executorCores?: number,
             public numExecutors?: number,
             public name?: string,
-            public heartbeatTimeoutInSecond?: number 
+            public heartbeatTimeoutInSecond?: number
 
         ) {
             this.kind = kind ? kind : null;
@@ -33,6 +33,6 @@ export class LivyUser implements ILivyUser {
             this.executorCores = executorCores ? executorCores : null;
             this.numExecutors = numExecutors ? numExecutors : null;
             this.name = name ? name : null;
-            this.heartbeatTimeoutInSecond = heartbeatTimeoutInSecond ? heartbeatTimeoutInSecond : null; 
+            this.heartbeatTimeoutInSecond = heartbeatTimeoutInSecond ? heartbeatTimeoutInSecond : null;
         }
 }

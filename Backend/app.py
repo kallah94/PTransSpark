@@ -15,7 +15,7 @@ def hello_world():
     return 'Hello, World!'
 
 @app.route('/loginSession', methods=['GET', 'POST'])
-def create_sssion():
+def create_session():
     if request.method == 'POST' :
         data = request.get_json()
         return service.createSession(data)
@@ -46,15 +46,17 @@ def getStatement():
 def Allbatches():
     return service.getAllBatches()
 
-@app.route('/createBatche')
+@app.route('/createBatche', methods=['GET', 'POST'])
 def create_batche():
-    return service.submitBatchJob()
+  if request.method == 'POST':
+    data = request.get_json()
+    return service.createBatche(data['file'])
 
 @app.route('/batches/'+str(0))
 def getbatche():
     return service.getBatche(0)
 
-@app.route('/deleteBatche/'+str(0))
-def delete_batche():
-    return service.deleteBatche(4)
+@app.route('/deleteBatche/<int:id>')
+def delete_batche(id):
+    return service.deleteBatche(id)
 

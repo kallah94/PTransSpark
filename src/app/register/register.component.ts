@@ -2,11 +2,10 @@
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { faUserCircle, faShieldAlt, faStreetView, faRadiationAlt, faRecycle, faAsterisk } from '@fortawesome/free-solid-svg-icons';
-import { far, faArrowAltCircleDown } from '@fortawesome/free-regular-svg-icons';
+import { faUserCircle, faShieldAlt, faAsterisk } from '@fortawesome/free-solid-svg-icons';
 import { AlertService, UserService, AuthenticationService } from '../_services';
 
-@Component({ 
+@Component({
     selector: 'app-register',
     templateUrl: 'register.component.html',
     styleUrls: ['register.component.scss']
@@ -15,9 +14,9 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
-    fausername = faUserCircle
-    fapassword = faShieldAlt
-    faname = faAsterisk
+    fausername = faUserCircle;
+    fapassword = faShieldAlt;
+    faname = faAsterisk;
 
     constructor(
         private formBuilder: FormBuilder,

@@ -42,9 +42,21 @@ def getAllBatches():
     r = requests.get(batchesUrl)
     return r.json()
 
-def createBatche():
-    data = model.BatchEncoder().encode(model.Batch())
-    r = requests.post(batchesUrl, data=data, headers=headers)
+def createBatche(posted_data):
+    #pybatch = {
+    #   'file': '/home/devtool/Lab/Web/PTransSpark/scripts/somme.py',
+     #  'args': [1, 29, '--sum']
+    #}
+    if(posted_data['args'] == None) :
+      args = []
+    else:
+      args = posted_data['args'].split(' ')
+
+    posted_data['args'] = args
+    print(posted_data['args'])
+    print(args)
+    r = requests.post(batchesUrl, data=json.dumps(posted_data), headers=headers)
+    print(r.json())
     return r.json()
 
 def getBatche(id):
@@ -55,19 +67,21 @@ def deleteBatche(id):
     r = requests.delete(batcheUrl+str(id))
     return r.json()
 
-def submitBatchJob():
-    batch = model.Batch('LivyServer',
-    '/opt/spark/examples/jars/spark-examples_2.11-2.4.4.jar',
-    'org.apache.spark.examples.SparkPi',
-    'hadoop',
-    '20g',
-    None,
-    None,
-    [200])
+def submitBatchJob(data):
 
-    pybatch = {
-       'file': '/home/devtool/Lab/BigData/Trans/codes/scripts/test.py'
-    }
-    data = model.BatchEncoder().encode(batch)
-    r = requests.post(batchesUrl, data=json.dumps(pybatch), headers=headers)
+    #batch = model.Batch('LivyServer',
+    #'/opt/spark/examples/jars/spark-examples_2.11-2.4.4.jar',
+    #'org.apache.spark.examples.SparkPi',
+    #'hadoop',
+    #'20g',
+    #None,
+    #None,
+    #[200])
+
+    #pybatch = {
+    #   'file': '/home/devtool/Lab/Web/PTransSpark/scripts/somme.py',
+     #  'args': [1, 29, '--sum']
+    #}
+    data = model.BatchEncoder().encode(data)
+    r = requests.post(batchesUrl, data=json.dumps(data), headers=headers)
     return r.json()

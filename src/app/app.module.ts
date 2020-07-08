@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SidebarModule } from 'ng-sidebar';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
 import { appRoutingModule } from './app.routing';
@@ -12,7 +12,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
-import { AlertComponent } from './_components';;
+import { AlertComponent } from './_components';
+import { SessionsComponent } from './sessions/sessions.component';
 
 @NgModule({
     imports: [
@@ -28,6 +29,7 @@ import { AlertComponent } from './_components';;
         HomeComponent,
         LoginComponent,
         RegisterComponent,
+        SessionsComponent,
         AlertComponent],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -38,4 +40,4 @@ import { AlertComponent } from './_components';;
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule { };
+export class AppModule { }
