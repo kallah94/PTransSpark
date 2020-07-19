@@ -6,14 +6,15 @@ import { apiUrl } from '../apiUrl';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+    public resourceUrl = 'http://localhost:5000';
     constructor(private http: HttpClient) { }
 
     getAll() {
         return this.http.get<User[]>(`${apiUrl}/users`);
     }
 
-    register(user: User) {
-        return this.http.post(`${apiUrl}/users/register`, user);
+    register(user: User): Observable<HttResponse<User>> {
+        return this.http.post<User>(`${resourceUrl}/register`, user, {observable: 'response'});
     }
 
     delete(id: number) {

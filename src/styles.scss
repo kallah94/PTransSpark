@@ -10,6 +10,7 @@ body {
   right: 0;
   height: 100%;
   font-family: sans-serif;
+  background-color: white;
 }
 
 body::before {
@@ -19,23 +20,23 @@ body::before {
   background-position: center;
   background-size: cover;
   background: url("/assets/images/login.jpg");
-  //background-size: cover;
-  //background: rgb(165, 165, 162);
-  //background: -moz-linear-gradient(162deg, rgb(141, 141, 127) 0%, rgba(253,187,45,0.09567577030812324) 100%);
-  //background: -webkit-linear-gradient(162deg, rgb(43, 42, 40) 0%, rgba(253,187,45,0.09567577030812324) 100%);
-  // background: linear-gradient(162deg, rgb(90, 94, 94) 0%, rgba(253,187,45,0.09567577030812324) 100%);
-  //filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#22c1c3",endColorstr="#fdbb2d",GradientType=1);
-  background-repeat: repeat;
+  background-size: cover;
+  background-repeat: repeat-y;
   z-index: -1;
-  height: 150%;
+  height:100%;
   width:100%; /* Using Glen Maddern's trick /via @mente */
   background-size: cover;
   /* don't forget to use the prefixes you need */
-  //transform: scale(3);
-  transform-origin: top left;
-  filter: blur(4px);
+  transform: scale(4);
+  //transform-origin: top;
+  transition-delay: 2s;
+  filter: blur(2px);
 }
 
 h1 {
   text-align: center;
+}
+
+html{
+  scroll-behavior: smooth;
 }

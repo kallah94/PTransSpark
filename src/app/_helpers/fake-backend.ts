@@ -6,6 +6,9 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
+// array in local storage for photo uploaded
+let photos = JSON.parse(localStorage.getItem('photos')) || [];
+
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -14,7 +17,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // wrap in delayed observable to simulate server api call
         return of(null)
             .pipe(mergeMap(handleRoute))
-            .pipe(materialize()) // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
+            .pipe(materialize())
             .pipe(delay(500))
             .pipe(dematerialize());
 
@@ -28,10 +31,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return getUsers();
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
                     return deleteUser();
+                case url.endsWith('/photos') && method === 'GET':
+                    return getAllphotos();
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
-            }    
+            }
         }
 
         // route functions
@@ -39,21 +44,21 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function authenticate() {
             const { username, password } = body;
             const user = users.find(x => x.username === username && x.password === password);
-            if (!user) return error('Username or password is incorrect');
+            if (!user) { return error('Username or password is incorrect'); }
             return ok({
                 id: user.id,
                 username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 token: 'fake-jwt-token'
-            })
+            });
         }
 
         function register() {
-            const user = body
+            const user = body;
 
             if (users.find(x => x.username === user.username)) {
-                return error('Username "' + user.username + '" is already taken')
+                return error('Username "' + user.username + '" is already taken');
             }
 
             user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
@@ -64,12 +69,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function getUsers() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn()) { return unauthorized(); }
             return ok(users);
-        }
+       }
 
         function deleteUser() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn()) { return unauthorized(); }
 
             users = users.filter(x => x.id !== idFromUrl());
             localStorage.setItem('users', JSON.stringify(users));
@@ -78,8 +83,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         // helper functions
 
+        // tslint:disable-next-line:no-shadowed-variable
         function ok(body?) {
-            return of(new HttpResponse({ status: 200, body }))
+            return of(new HttpResponse({ status: 200, body }));
         }
 
         function error(message) {
@@ -96,7 +102,20 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function idFromUrl() {
             const urlParts = url.split('/');
+            // tslint:disable-next-line:radix
             return parseInt(urlParts[urlParts.length - 1]);
+        }
+
+        // function get all photo
+        function getAllphotos() {
+            return ok(photos);
+        }
+
+        // function get  single photo by Id
+        function getPhotoId() {
+            const {id} = body;
+            const photo = photos.find(x => x.id === id);
+            return photo;
         }
     }
 }
@@ -106,4 +125,5 @@ export const fakeBackendProvider = {
     provide: HTTP_INTERCEPTORS,
     useClass: FakeBackendInterceptor,
     multi: true
+
 };

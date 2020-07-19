@@ -4,9 +4,6 @@ import * as fa from '@fortawesome/free-solid-svg-icons';
 
 import { AuthenticationService } from './_services';
 import { User } from './_models';
-
-import './_content/app.less';
-
 @Component({
   selector: 'app',
   templateUrl: 'app.component.html',
@@ -14,6 +11,7 @@ import './_content/app.less';
 })
 
 export class AppComponent {
+  closeResult: string;
   currentUser: User;
   _opened = false;
   isAdmin = false;
@@ -34,7 +32,7 @@ export class AppComponent {
     private authenticationService: AuthenticationService
   ) {
     this.authenticationService.currentUser.subscribe(x => {
-    this.currentUser = x;
+      this.currentUser = x;
       const admins = ['kallah', 'mbagnick', 'olimata']
       if (this.currentUser) {
         this.isAdmin = admins.includes(this.currentUser.username)
@@ -51,4 +49,5 @@ export class AppComponent {
     this._opened = !this._opened;
   }
 
+ 
 }

@@ -2,17 +2,25 @@ from flask import Flask
 from flask import request
 import json, requests, textwrap
 from flask_restful import Api, Resource, abort, reqparse
-import service
-
-
+from flask_mysqldb import MySQL
+from flask import jsonify
+from Backend import model, UserService, service
+from werkzeug.security import generate_password_hash, check_password_hash
 LIVY_URL = "http://localhost:8989"
 
 app = Flask(__name__)
 api = Api(app)
 
+#configuration de la DB
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'kallah'
+app.config['MYSQL_PASSWORD'] = 'kallah'
+app.config['MYSQL_DB'] = 'bdtrans'
+mysql = MySQL(app)
+
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return 'Succes Hello, World!'
 
 @app.route('/loginSession', methods=['GET', 'POST'])
 def create_session():
@@ -60,3 +68,14 @@ def getbatche():
 def delete_batche(id):
     return service.deleteBatche(id)
 
+@app.route('/register', methods=['POST'])
+def register():
+    user = model.User()
+    userForm = request.form.to_dict()
+    user.__dict__.update(userForm)
+    user.password = generate_password_hash(user.password)
+    try:
+        UserService.save(mysql, user)
+    except:
+        return jsonify({'error': 'An Error Occurred saving the user '}), 500
+    return jsonify({'message': 'User registred successfully'}), 201

@@ -1,5 +1,5 @@
 import requests, json
-import model
+from Backend import model
 from IPython.utils import text
 
 LivyUrl = 'http://localhost:8998'
@@ -68,8 +68,12 @@ def deleteBatche(id):
     return r.json()
 
 def submitBatchJob(data):
+    data = model.BatchEncoder().encode(data)
+    r = requests.post(batchesUrl, data=json.dumps(data), headers=headers)
+    return r.json()
 
-    #batch = model.Batch('LivyServer',
+
+ #batch = model.Batch('LivyServer',
     #'/opt/spark/examples/jars/spark-examples_2.11-2.4.4.jar',
     #'org.apache.spark.examples.SparkPi',
     #'hadoop',
@@ -82,6 +86,3 @@ def submitBatchJob(data):
     #   'file': '/home/devtool/Lab/Web/PTransSpark/scripts/somme.py',
      #  'args': [1, 29, '--sum']
     #}
-    data = model.BatchEncoder().encode(data)
-    r = requests.post(batchesUrl, data=json.dumps(data), headers=headers)
-    return r.json()

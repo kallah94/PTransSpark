@@ -8,7 +8,8 @@
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="input-icons">
-                <fa-icon [icon]='fausername' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x' class="focus"></fa-icon>
+                <fa-icon [icon]='fausername' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x'
+                    class="focus"></fa-icon>
                 <input type="text" formControlName="username" class="input100 input-field" placeholder="Username"
                     [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                 <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
@@ -16,7 +17,8 @@
                 </div>
             </div>
             <div class="input-icons">
-                <fa-icon [icon]='fapassword' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x' class="focus"></fa-icon>
+                <fa-icon [icon]='fapassword' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x'
+                    class="focus"></fa-icon>
                 <input type="password" formControlName="password" class="input100 input-field" placeholder="Password"
                     [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">

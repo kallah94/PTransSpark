@@ -1,6 +1,15 @@
 import json
 from json import JSONEncoder
 
+class User(object):
+    def __init__(self,firstname=None, lastname=None, username=None, password=None):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.username = username
+        self.password = password
+    def __str__(self):
+        return str(self.firstname) + str(self.lastname) +\
+            str(self.username)
 class UserSession:
     def __init__(self,  kind='pyspark', proxyUser=None,
                 driverMemory=None,

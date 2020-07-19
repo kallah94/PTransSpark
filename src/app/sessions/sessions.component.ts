@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from './session.service';
+import { SessionService } from '../_services/session.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 import * as fa from '@fortawesome/free-regular-svg-icons';
 import * as fabrand from '@fortawesome/free-brands-svg-icons';
 import { AlertService } from '../_services';
-import { LivyUser } from '../_models/livyuser';
-import { Kinds } from 'src/kind.enum';
 import { BatchSession } from '../_models/batch';
 
 
@@ -18,7 +15,6 @@ import { BatchSession } from '../_models/batch';
 })
 export class SessionsComponent implements OnInit {
   batcheForm: FormGroup;
-  user = new LivyUser();
   batche: BatchSession;
   loading = false;
   submitted =  false;
@@ -31,18 +27,9 @@ export class SessionsComponent implements OnInit {
     private sessionService: SessionService,
     private alertService: AlertService
   ) {}
-
-
-  subUser() {
-    this.user.kind = Kinds.pyspark;
-    this.user.name = 'kallah';
-    this.sessionService.create_session(this.user).subscribe(res => {
-      console.log(res.status);
-    });
-  }
   ngOnInit() {
     this.batcheForm = this.formBuilder.group({
-      file: ['', Validators.required],
+      file: ['/home/devtool/Lab/PTransSpark/script/somme.py', Validators.required],
       args: [''],
       driverMemory: ['32g'],
       driverCores: [3],
@@ -70,7 +57,7 @@ export class SessionsComponent implements OnInit {
           .subscribe(
             data => {
               this.alertService.success('Creation successful', true);
-              this.router.navigate(['/']);
+              this.router.navigate(['/batches']);
             },
             error => {
               this.alertService.error(error);

@@ -1,10 +1,32 @@
-﻿<h1>Hi {{currentUser.firstName}}!</h1>
-<p>You're logged in with Angular 8!!</p>
-<h3>All registered users:</h3>
-<ul>
-    <li *ngFor="let user of users">
-        {{user.username}} ({{user.firstName}} {{user.lastName}})
-        <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
-    </li>
-</ul>
+﻿<br>
+<section>
+  <div class="row">
+    <div class="col-sm-12 col-md-2">
+      <ul class="list-group-flush">
+        <li class="list-group-item shadow-lg mb-1">test</li>
+        <li class="list-group-item shadow-lg mb-1">test</li>
+        <li class="list-group-item shadow-lg mb-1">test</li>
+        <li class="list-group-item shadow-lg mb-1">test</li>
+        <li class="list-group-item shadow-lg mb-1">test</li>
+        <li class="list-group-item shadow-lg mb-1">test</li>
+      </ul>
+    </div>
+    <div class="col-sm-12 col-md-8">
+    </div>
+  </div>
+</section>
 
+<div>
+  <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
+  <button (click)="openModal('custom-modal-2')">Open Modal 2</button>
+</div>
+
+<jw-modal id="custom-modal-1">
+  <h1>A Custom Modal!</h1>
+  <button (click)="closeModal('custom-modal-1');">Close</button>
+</jw-modal>
+
+<jw-modal id="custom-modal-2">
+  <h1 style="height:1000px">A Tall Custom Modal!</h1>
+  <button (click)="closeModal('custom-modal-2');">Close</button>
+</jw-modal>
