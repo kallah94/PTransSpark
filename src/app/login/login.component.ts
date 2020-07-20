@@ -33,11 +33,6 @@ export class LoginComponent implements OnInit {
             username: ['', Validators.required],
             password: ['', Validators.required]
         });
-
-        console.log(this.loginForm);
-
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
     }
 
     // convenience getter for easy access to form fields
@@ -48,7 +43,7 @@ export class LoginComponent implements OnInit {
 
         // reset alerts on submit
         this.alertService.clear();
-
+        console.log(this.loginForm);
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
