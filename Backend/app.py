@@ -1,15 +1,14 @@
-from flask import Flask
-from flask import request
+from flask import Flask, request, session, jsonify
 import json, requests, textwrap
 from flask_restful import Api, Resource, abort, reqparse
 from flask_mysqldb import MySQL
-from flask import jsonify
 from flask_cors import CORS
 from Backend import model, UserService, service
 from werkzeug.security import generate_password_hash, check_password_hash
 LIVY_URL = "http://localhost:8989"
 
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 api = Api(app)
 
@@ -84,5 +83,11 @@ def register():
 
 @app.route('/login', methods = ['POST'])
 def login():
-    print(request.get_json())
-    return 'ok'
+    loginForm = request.get_json()
+    username = loginForm['username']
+    password = loginForm['password']
+    try:
+        user = UserService.getUser(mysql, username)
+        if user and check_password_hash(user[0][4], password) :
+            session['username'] = username
+            return jsonify({'connected successfully !!'}), 200

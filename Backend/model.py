@@ -10,6 +10,7 @@ class User(object):
     def __str__(self):
         return str(self.firstname) + str(self.lastname) +\
             str(self.username)
+
 class UserSession:
     def __init__(self,  kind='pyspark', proxyUser=None,
                 driverMemory=None,
