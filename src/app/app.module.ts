@@ -11,12 +11,12 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login';
-import { RegisterComponent } from './register';
+import { RegisterComponent } from './register/register.component';
 import { AlertComponent } from './_components';
 import { SessionsComponent } from './sessions/sessions.component';
 import { BatchehomeComponent } from './batchehome/batchehome.component';
-import { ModalComponent } from './_modal/modal.component';;
-import { PhotoComponent } from './photo/photo.component'
+import { ModalComponent } from './_modal/modal.component';
+import { PhotoComponent } from './photo/photo.component';
 
 
 @NgModule({

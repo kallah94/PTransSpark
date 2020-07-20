@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { faUserCircle, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
-import { AlertService, AuthenticationService } from '../_services';
+import { AlertService, AuthenticationService, UserService } from '../_services';
 
 @Component({
     selector: 'app-login',
@@ -24,20 +24,17 @@ export class LoginComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService,
+        private userService: UserService,
         private alertService: AlertService
-    ) {
-        // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) {
-            this.router.navigate(['/']);
-        }
-    }
+    ) {}
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
         });
+
+        console.log(this.loginForm);
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
@@ -58,8 +55,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
-            .pipe(first())
+        this.userService.login(this.loginForm.value)
             .subscribe(
                 data => {
                     this.router.navigate([this.returnUrl]);

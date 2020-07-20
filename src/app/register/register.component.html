@@ -9,16 +9,16 @@
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="input-icons">
                 <fa-icon [icon]='faname' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x' class="focus"></fa-icon>
-                <input type="text" formControlName="firstName" class="input100 input-field" placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                <input type="text" formControlName="firstname" class="input100 input-field" placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+                <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstname.errors.required">First Name is required</div>
                 </div>
             </div>
             <div class="input-icons">
                 <fa-icon [icon]='faname' id="faicon" [styles]="{'stroke': 'blue', 'color': 'blue'}" size='2x' class="focus"></fa-icon>
-                <input type="text" formControlName="lastName" class="input100 input-field" placeholder="Last Name" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                <input type="text" formControlName="lastname" class="input100 input-field" placeholder="Last Name" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
+                <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastname.errors.required">Last Name is required</div>
                 </div>
             </div>
             <div class="input-icons">

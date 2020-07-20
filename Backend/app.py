@@ -4,11 +4,13 @@ import json, requests, textwrap
 from flask_restful import Api, Resource, abort, reqparse
 from flask_mysqldb import MySQL
 from flask import jsonify
+from flask_cors import CORS
 from Backend import model, UserService, service
 from werkzeug.security import generate_password_hash, check_password_hash
 LIVY_URL = "http://localhost:8989"
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"*": {"origins": "*"}})
 api = Api(app)
 
 #configuration de la DB
@@ -71,7 +73,7 @@ def delete_batche(id):
 @app.route('/register', methods=['POST'])
 def register():
     user = model.User()
-    userForm = request.form.to_dict()
+    userForm = request.get_json()
     user.__dict__.update(userForm)
     user.password = generate_password_hash(user.password)
     try:
@@ -79,3 +81,8 @@ def register():
     except:
         return jsonify({'error': 'An Error Occurred saving the user '}), 500
     return jsonify({'message': 'User registred successfully'}), 201
+
+@app.route('/login', methods = ['POST'])
+def login():
+    print(request.get_json())
+    return 'ok'

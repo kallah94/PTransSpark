@@ -14,7 +14,6 @@ export class PhotoComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private photoService: PhotoService,
   ) { }
 
   ngOnInit() {

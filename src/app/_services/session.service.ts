@@ -50,6 +50,6 @@ export class SessionService {
   }
 
   deleteBatche(id: number): Observable<HttpResponse<any>>{
-    return this.http.post<any>(`${this.resourceUrl}/deleteBatche/${id}`, {observe: 'response'})
+    return this.http.post<any>(`${this.resourceUrl}/deleteBatche/${id}`, {observe: 'response'});
   }
 }
