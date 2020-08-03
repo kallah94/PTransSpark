@@ -1,1 +1,25 @@
 <p>archives works!</p>
+<div>
+    
+</div>
+<table class="table table-bordered" *ngFor="let photo of photos">
+    <tr>
+        <th scope="col">
+            <ul>
+                <li><a href="details.component.html">Details</a></li>
+                <li><a>POI</a></li>
+            </ul>
+        </th>
+        <th scope="col">
+            <ul>
+                <!-- <li *ngFor= "let photo of photos">{{photo.title}}</li> -->
+                <li><img [attr.src]="" width="200" height="200"></li>
+            </ul>
+        </th>
+        <th>
+        </th>
+    </tr>
+
+</table>
+
+<!-- <img src="../../assets/images/bg.jpg" width="500" height="500"> -->

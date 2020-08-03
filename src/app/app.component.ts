@@ -37,7 +37,7 @@ export class AppComponent {
   ) {
     this.authenticationService.currentUser.subscribe(x => {
       this.currentUser = x;
-      const admins = ['kallah', 'mbagnick', 'olimata'];
+      const admins = ['kallah', 'mbagnick', 'ouli'];
       if (this.currentUser) {
         this.isAdmin = admins.includes(this.currentUser.username);
       }

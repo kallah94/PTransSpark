@@ -10,7 +10,7 @@ import { apiUrl } from '../apiUrl';
   providedIn: 'root'
 })
 export class SessionService {
-  public resourceUrl = 'http://localhost:8888';
+  public resourceUrl = 'http://localhost:5000';
   constructor(protected http: HttpClient) {}
 
   // Work
@@ -71,5 +71,9 @@ export class SessionService {
 
   loadPyspark() {
     return this.http.get<BatchSession>(`${apiUrl}/models/load/pyspark`);
+  }
+
+  loadPhoto() {
+    return this.http.get('assets/photos.json');
   }
 }

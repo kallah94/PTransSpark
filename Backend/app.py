@@ -5,7 +5,6 @@ from Backend import model, service
 LIVY_URL = "http://localhost:8989"
 
 app = Flask(__name__)
-app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 api = Api(app)
 
 @app.route('/')

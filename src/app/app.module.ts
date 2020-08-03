@@ -17,7 +17,8 @@ import { ArchivesComponent } from './archives/archives.component';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
-import { appRoutingModule } from './app.routing';
+import { appRoutingModule } from './app.routing';;
+import { DetailsComponent } from './archives/details/details.component'
 @NgModule({
     imports: [
         BrowserModule,
@@ -38,7 +39,8 @@ import { appRoutingModule } from './app.routing';
         BatchehomeComponent,
         ModalComponent
 ,
-        ArchivesComponent        ],
+        ArchivesComponent ,
+        DetailsComponent       ],
 
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

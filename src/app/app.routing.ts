@@ -6,6 +6,8 @@ import { AuthGuard } from './_helpers';
 import { SessionsComponent } from './sessions/sessions.component';
 import { BatchehomeComponent } from './batchehome/batchehome.component';
 import { ModalComponent } from './_modal/modal.component';
+import { ArchivesComponent } from './archives/archives.component';
+import { DetailsComponent } from './archives/details/details.component'
 const routes: Routes = [
     { path: 'home', component: HomeComponent},
     { path: 'login', component: LoginComponent },
@@ -13,6 +15,8 @@ const routes: Routes = [
     {path: 'admin/newBatche', component: SessionsComponent},
     {path: 'batches', component: BatchehomeComponent},
     {path: 'modal', component: ModalComponent},
+    {path: 'photoloadings', component: ArchivesComponent},
+    {path: 'details', component: DetailsComponent},
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

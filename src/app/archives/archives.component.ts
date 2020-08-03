@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from '../_services/session.service';
 
 @Component({
   selector: 'app-archives',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArchivesComponent implements OnInit {
 
-  constructor() { }
+  photos: any;
 
-  ngOnInit(): void {
+  constructor(private sessionservice: SessionService) {
+    
+   }
+
+  ngOnInit() {
+    this.sessionservice.loadPhoto().subscribe(res => {
+      this.photos = res;
+      console.log('test', res);
+    }) 
   }
+
+
 
 }
