@@ -7,7 +7,7 @@ import { SessionsComponent } from './sessions/sessions.component';
 import { BatchehomeComponent } from './batchehome/batchehome.component';
 import { ModalComponent } from './_modal/modal.component';
 const routes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'home', component: HomeComponent},
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     {path: 'admin/newBatche', component: SessionsComponent},
@@ -15,7 +15,7 @@ const routes: Routes = [
     {path: 'modal', component: ModalComponent},
 
     // otherwise redirect to home
-    { path: '**', redirectTo: 'login' }
+    { path: '**', redirectTo: '' }
 ];
 
 export const appRoutingModule = RouterModule.forRoot(routes);

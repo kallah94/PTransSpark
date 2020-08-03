@@ -37,7 +37,6 @@ export class RegisterComponent implements OnInit {
             lastname: ['', Validators.required],
             username: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]],
-            confirmpass: ['']
         });
     }
 
@@ -57,6 +56,7 @@ export class RegisterComponent implements OnInit {
 
         this.loading = true;
         this.userService.register(this.registerForm.value)
+            .pipe(first())
             .subscribe(
                 data => {
                     this.alertService.success('Registration successful', true);

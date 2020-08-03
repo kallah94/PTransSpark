@@ -1,21 +1,11 @@
 import json
 from json import JSONEncoder
 
-class User(object):
-    def __init__(self,firstname=None, lastname=None, username=None, password=None):
-        self.firstname = firstname
-        self.lastname = lastname
-        self.username = username
-        self.password = password
-    def __str__(self):
-        return str(self.firstname) + str(self.lastname) +\
-            str(self.username)
-
 class UserSession:
-    def __init__(self,  kind='pyspark', proxyUser=None,
+    def __init__(self,  kind=None, proxyUser=None,
                 driverMemory=None,
-                driverCores=2,
-                name='kallah',
+                driverCores=None,
+                name=None,
                 ):
         self.kind = kind
         self.proxyUser = proxyUser
@@ -37,29 +27,26 @@ class UserSessionEncoder(JSONEncoder):
 
 class Batch:
     def __init__(self,
-        name='Spark',
+        name=None,
         file=None,
-        className=None,
-        proxyUser=None,
         executorMemory=None,
         driverMemory=None,
         driverCores=None,
+        numExecutors = None,
         args=None,
         ):
         self.name = name
         self.file = file
-        self.className = className
-        self.proxyUser = proxyUser
         self.executorMemory = executorMemory
         self.driverMemory = driverMemory
         self.driverCores = driverCores
+        self.numExecutors = numExecutors
         self.args = args
         
         
 
         def __str__(self):
-            return  'proxyUser: '+self.proxyUser +\
-                'driverMemory: '+self.driverMemory +\
+            return  'driverMemory: '+self.driverMemory +\
                 'driverCores: '+self.driverCores    +\
                 'name: '+self.name
 

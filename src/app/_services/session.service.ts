@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { ILivyUser } from 'src/app/_models/livyuser';
 import { Observable } from 'rxjs';
-import { IBatchSession } from '../_models/batch';
+import { IBatchSession, BatchSession } from '../_models/batch';
 import { GetBatches } from '../_models/getBaches';
+import { apiUrl } from '../apiUrl';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
-  public resourceUrl = 'http://localhost:5000';
+  public resourceUrl = 'http://localhost:8888';
   constructor(protected http: HttpClient) {}
 
   // Work
@@ -51,5 +52,24 @@ export class SessionService {
 
   deleteBatche(id: number): Observable<HttpResponse<any>>{
     return this.http.post<any>(`${this.resourceUrl}/deleteBatche/${id}`, {observe: 'response'});
+  }
+
+  /**
+   * Methodes to saves modeles of sessions and batches
+   */
+  saveModel(batche: BatchSession) {
+    return this.http.post(`${apiUrl}/models/save`, batche);
+  }
+
+  loadModel(name: string){
+    return this.http.get(`${apiUrl}/load/${name}`);
+  }
+
+  getAllmodels() {
+    return this.http.get<BatchSession[]>(`${apiUrl}/models`);
+  }
+
+  loadPyspark() {
+    return this.http.get<BatchSession>(`${apiUrl}/models/load/pyspark`);
   }
 }

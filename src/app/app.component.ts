@@ -4,7 +4,9 @@ import * as fa from '@fortawesome/free-solid-svg-icons';
 
 import { AuthenticationService } from './_services';
 import { User } from './_models';
+import { SessionService } from './_services/session.service';
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'app',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
@@ -13,6 +15,7 @@ import { User } from './_models';
 export class AppComponent {
   closeResult: string;
   currentUser: User;
+  // tslint:disable-next-line:variable-name
   _opened = false;
   isAdmin = false;
   faatom = fa.faAtom;
@@ -29,13 +32,14 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private sessionService: SessionService
   ) {
     this.authenticationService.currentUser.subscribe(x => {
       this.currentUser = x;
-      const admins = ['kallah', 'mbagnick', 'olimata']
+      const admins = ['kallah', 'mbagnick', 'olimata'];
       if (this.currentUser) {
-        this.isAdmin = admins.includes(this.currentUser.username)
+        this.isAdmin = admins.includes(this.currentUser.username);
       }
     });
   }
@@ -48,6 +52,4 @@ export class AppComponent {
   public _toggleSidebar() {
     this._opened = !this._opened;
   }
-
- 
 }

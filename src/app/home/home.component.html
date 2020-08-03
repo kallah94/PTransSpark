@@ -30,3 +30,17 @@
   <h1 style="height:1000px">A Tall Custom Modal!</h1>
   <button (click)="closeModal('custom-modal-2');">Close</button>
 </jw-modal>
+<ul>
+    <li *ngFor="let user of users">
+        {{user.username}} ({{user.firstName}} {{user.lastName}})
+        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
+    </li>
+</ul>
+<!--
+<ul>
+    <li *ngFor="let model of models">
+        {{model.name}}
+    </li>
+</ul>
+-->
+<button (click)="load()" class="btn btn-outline-warning nav-item nav-link">clikk</button>

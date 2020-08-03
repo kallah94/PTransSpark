@@ -1,23 +1,12 @@
 from flask import Flask, request, session, jsonify
 import json, requests, textwrap
 from flask_restful import Api, Resource, abort, reqparse
-from flask_mysqldb import MySQL
-from flask_cors import CORS
-from Backend import model, UserService, service
-from werkzeug.security import generate_password_hash, check_password_hash
+from Backend import model, service
 LIVY_URL = "http://localhost:8989"
 
 app = Flask(__name__)
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-cors = CORS(app, resources={r"*": {"origins": "*"}})
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 api = Api(app)
-
-#configuration de la DB
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'kallah'
-app.config['MYSQL_PASSWORD'] = 'kallah'
-app.config['MYSQL_DB'] = 'bdtrans'
-mysql = MySQL(app)
 
 @app.route('/')
 def hello_world():
@@ -68,26 +57,3 @@ def getbatche():
 @app.route('/deleteBatche/<int:id>')
 def delete_batche(id):
     return service.deleteBatche(id)
-
-@app.route('/register', methods=['POST'])
-def register():
-    user = model.User()
-    userForm = request.get_json()
-    user.__dict__.update(userForm)
-    user.password = generate_password_hash(user.password)
-    try:
-        UserService.save(mysql, user)
-    except:
-        return jsonify({'error': 'An Error Occurred saving the user '}), 500
-    return jsonify({'message': 'User registred successfully'}), 201
-
-@app.route('/login', methods = ['POST'])
-def login():
-    loginForm = request.get_json()
-    username = loginForm['username']
-    password = loginForm['password']
-    try:
-        user = UserService.getUser(mysql, username)
-        if user and check_password_hash(user[0][4], password) :
-            session['username'] = username
-            return jsonify({'connected successfully !!'}), 200

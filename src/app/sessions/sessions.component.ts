@@ -15,7 +15,6 @@ import { BatchSession } from '../_models/batch';
 })
 export class SessionsComponent implements OnInit {
   batcheForm: FormGroup;
-  batche: BatchSession;
   loading = false;
   submitted =  false;
   fafile = fa.faFile;
@@ -29,7 +28,7 @@ export class SessionsComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.batcheForm = this.formBuilder.group({
-      file: ['/home/devtool/Lab/PTransSpark/script/somme.py', Validators.required],
+      file: ['/home/devtool/Lab/Web/PTransSpark/scripts/code/FinalScript.py', Validators.required],
       args: [''],
       driverMemory: ['32g'],
       driverCores: [3],
@@ -40,28 +39,26 @@ export class SessionsComponent implements OnInit {
   }
 
   get f() { return this.batcheForm.controls; }
-
   onSubmit() {
-        this.submitted = true;
+    this.submitted = true;
         // reset alerts on submit
-        this.alertService.clear();
+    this.alertService.clear();
 
         // stop here if form is invalid
-        if (this.batcheForm.invalid) {
+    if (this.batcheForm.invalid) {
           return;
         }
-        this.loading = true;
-        console.log(this.batcheForm.value);
-        this.batche = new BatchSession(this.batcheForm.value);
-        this.sessionService.createBatche(this.batche)
-          .subscribe(
-            data => {
-              this.alertService.success('Creation successful', true);
-              this.router.navigate(['/batches']);
-            },
-            error => {
-              this.alertService.error(error);
-              this.loading = false;
-            });
+    this.loading = true;
+    this.sessionService.saveModel(this.batcheForm.value)
+    .subscribe(
+        data => {
+        this.alertService.success('Creation successful', true);
+        console.log(this.loading);
+        this.router.navigate(['/home']);
+      },
+      error => {
+        this.alertService.error(error);
+        this.loading = false;
+      });
       }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from '../_services/session.service'
+import { SessionService } from '../_services/session.service';
 import { GetBatches } from '../_models/getBaches';
-
+import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-batchehome',
   templateUrl: './batchehome.component.html',
@@ -10,19 +10,21 @@ import { GetBatches } from '../_models/getBaches';
 export class BatchehomeComponent implements OnInit {
 
   batches = new GetBatches();
+  models = [];
   constructor(
     private sessionService: SessionService,
   ) { }
 
   ngOnInit() {
-    console.log('est test');
-    {
-      this.sessionService.getbaches()
-        .subscribe(res => {
-          this.batches = res.body;
-          console.log(this.batches);
-        });
-    }
+    this.sessionService.getbaches()
+      .subscribe(res => {
+        this.batches = res.body;
+      });
+    this.loadAllModels();
   }
-
+  private loadAllModels() {
+    this.sessionService.getAllmodels()
+      .pipe(first())
+      .subscribe(models => this.models = models);
+  }
 }
