@@ -47,7 +47,7 @@
                     <div class="row" *ngFor="let photo of photos">
                         <div class="col-sm">
                             <div class="card">
-                                <img src={{photo.download_URL}} class="card-img-top" alt="..." width="200" height="200">
+                                <img src={{photo.download_URL}} class="card-img-top" alt="senegal" width="200" height="200">
                                 <div class="card-body">
                                     <ul>
                                         <li [class.selected] ="photo === selectedPhoto" (click)="onSelected(photo)" class="stretched-link text-danger" style="position: relative;">
@@ -56,7 +56,7 @@
                                     </ul>
                                     <ul>
                                         <li>
-                                            <a href="" class="stretched-link text-danger" style="position: relative;">POI</a>
+                                            <button class="btn btn-outline-primary">POI</button>
                                         </li>
                                     </ul>
                             
