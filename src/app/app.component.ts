@@ -29,6 +29,7 @@ export class AppComponent {
   fasess = fa.faRoad;
   falist = fa.faList;
   fastatement = fa.faShareAlt;
+  faalbum = fa.faBook;
 
   constructor(
     private router: Router,

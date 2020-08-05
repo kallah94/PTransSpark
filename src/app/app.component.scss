@@ -21,3 +21,14 @@
   .zoom:hover {
     transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   }
+  #myDIV {
+    background: rgb(0, 255, 85);
+    animation: mymove 10s infinite;
+  }
+  
+  @keyframes mymove {
+    from {background-color: rgb(255, 187, 0);}
+    to {background-color: rgba(183, 0, 255, 0.616);}
+    from {background-color:lighten($color: #0396f8, $amount: 0);}
+    to {background-color: lightness($color: #972f52e7);}
+  }

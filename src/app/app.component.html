@@ -1,23 +1,28 @@
 ﻿<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+<nav class="navbar navbar-expand-lg navbar-dark bg-light" *ngIf="currentUser">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-
-      <li class="nav-item">
-        <button class="btn btn-outline-warning nav-item" routerLink="/">
-          <fa-icon [icon]='fahome'></fa-icon>
-        </button>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item mx-3">
+        <a class="btn btn-outline-primary" routerLink="/">
+          <fa-icon [icon]='fahome'></fa-icon> Home
+        </a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item">
+        <a class="btn btn-outline-primary" routerLink="/">
+          <fa-icon [icon]='faalbum'></fa-icon> Album
+        </a>
       </li>
     </ul>
   </div>
   <button (click)="logout()" class="btn btn-outline-danger nav-item nav-link">
-    <fa-icon [icon]='falogout'></fa-icon>
+    Logout <fa-icon [icon]='falogout'></fa-icon>
   </button>
   <div class="vl"></div>
   <button class="btn btn-outline-primary" style="margin-right: 0; margin-left: 11px;" (click)="_toggleSidebar()">
-    <fa-icon [icon]="faatom"></fa-icon>
+    <fa-icon [icon]="faatom"></fa-icon> Dashboard
   </button>
 </nav>
 <ng-sidebar-container style="position:absolute" *ngIf="isAdmin">
@@ -38,7 +43,12 @@
     </ul>
   </ng-sidebar>
 </ng-sidebar-container>
-
+<div id="myDIV" class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Fluid jumbotron</h1>
+    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  </div>
+</div>
 <div class="container-fluid">
   <alert></alert>
   <router-outlet></router-outlet>
