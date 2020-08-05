@@ -29,6 +29,8 @@ export class AppComponent {
   fasess = fa.faRoad;
   falist = fa.faList;
   fastatement = fa.faShareAlt;
+  faalbum = fa.faBook;
+  fasmile = fa.faSmileWink;
 
   constructor(
     private router: Router,
