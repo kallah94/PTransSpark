@@ -74,6 +74,7 @@ export class SessionService {
   }
 
   loadPhoto() {
-    return this.http.get('assets/photos.json');
+    return this.http.get('assets/images.json');
   }
+
 }

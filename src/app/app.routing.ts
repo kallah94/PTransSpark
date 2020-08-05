@@ -7,7 +7,7 @@ import { SessionsComponent } from './sessions/sessions.component';
 import { BatchehomeComponent } from './batchehome/batchehome.component';
 import { ModalComponent } from './_modal/modal.component';
 import { ArchivesComponent } from './archives/archives.component';
-import { DetailsComponent } from './archives/details/details.component'
+import { DetailsComponent } from './archives/details/details.component';
 const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
     { path: 'login', component: LoginComponent },

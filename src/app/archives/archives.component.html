@@ -1,25 +1,80 @@
 <p>archives works!</p>
-<div>
-    
-</div>
-<table class="table table-bordered" *ngFor="let photo of photos">
-    <tr>
-        <th scope="col">
-            <ul>
-                <li><a href="details.component.html">Details</a></li>
-                <li><a>POI</a></li>
-            </ul>
-        </th>
-        <th scope="col">
-            <ul>
-                <!-- <li *ngFor= "let photo of photos">{{photo.title}}</li> -->
-                <li><img [attr.src]="" width="200" height="200"></li>
-            </ul>
-        </th>
-        <th>
-        </th>
-    </tr>
 
+<!--<div class="container" *ngFor="let photo of photos">
+    <div class="row">
+        <div class="col-sm-4">
+            <!--<div class="table-responstive" *ngFor="let photo of photos">-->
+                <!--<table class="table">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <th>
+                                    <tr>
+                                        <div class="card">
+                                                    <img src={{photo.download_URL}} class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="details" class="stretched-link text-danger" style="position: relative;">Details</a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="" class="stretched-link text-danger" style="position: relative;">POI</a>
+                                                            </li>
+                                                        </ul>
+                                                
+                                                    </div>
+                                                
+                                        </div>
+                                    </tr>
+                                </th>
+                            </div>
+                        </div>    
+                    </div>
+                    
+                </table>
+            </div>
+            
+        </div>
+    </div>
+</div>-->
+<table class="table-bordered">
+    <th>
+        <tr>
+            <div class="card-columns">
+                <div class="photos">
+                    <div class="row" *ngFor="let photo of photos">
+                        <div class="col-sm">
+                            <div class="card">
+                                <img src={{photo.download_URL}} class="card-img-top" alt="..." width="200" height="200">
+                                <div class="card-body">
+                                    <ul>
+                                        <li [class.selected] ="photo === selectedPhoto" (click)="onSelected(photo)" class="stretched-link text-danger" style="position: relative;">
+                                            Details
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <a href="" class="stretched-link text-danger" style="position: relative;">POI</a>
+                                        </li>
+                                    </ul>
+                            
+                                </div>
+                                <div class="card-footer" *ngIf="selectedPhoto">
+                                    <ul>
+                                        <li>{{selectedPhoto.identifier}}</li>
+                                        <li>{{selectedPhoto.Title}}</li>
+                                        <li>{{selectedPhoto.User_tags}}</li>
+                                        <li>{{selectedPhoto.Longitude                                                   }}</li>
+                                        <li>{{selectedPhoto.Latitude}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tr>
+    </th>
 </table>
-
-<!-- <img src="../../assets/images/bg.jpg" width="500" height="500"> -->
