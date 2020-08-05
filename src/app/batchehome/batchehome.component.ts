@@ -25,6 +25,9 @@ export class BatchehomeComponent implements OnInit {
   private loadAllModels() {
     this.sessionService.getAllmodels()
       .pipe(first())
-      .subscribe(models => this.models = models);
+      .subscribe(models => {
+        this.models = models;
+        console.log(this.models)
+      });
   }
 }

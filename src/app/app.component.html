@@ -1,5 +1,5 @@
 ﻿<!-- nav -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-light" *ngIf="currentUser">
+<nav class="navbar navbar-expand-lg navbar-dark bg-light shadow-lg p-3 mb-3 bg-white rounded" *ngIf="currentUser">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -11,7 +11,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="btn btn-outline-primary" routerLink="/">
+        <a class="btn btn-outline-primary" routerLink="/photoloadings">
           <fa-icon [icon]='faalbum'></fa-icon> Album
         </a>
       </li>
@@ -20,10 +20,9 @@
   <button (click)="logout()" class="btn btn-outline-danger nav-item nav-link">
     Logout <fa-icon [icon]='falogout'></fa-icon>
   </button>
-  <div class="vl"></div>
-  <button class="btn btn-outline-primary" style="margin-right: 0; margin-left: 11px;" (click)="_toggleSidebar()">
+  <!--<button class="btn btn-outline-primary" style="margin-right: 0; margin-left: 11px;" (click)="_toggleSidebar()">
     <fa-icon [icon]="faatom"></fa-icon> Dashboard
-  </button>
+  </button>-->
 </nav>
 <ng-sidebar-container style="position:absolute" *ngIf="isAdmin">
   <ng-sidebar [(opened)]="_opened" position="right" mode="push" animate="true" closeOnClickOutside="true">
@@ -43,10 +42,14 @@
     </ul>
   </ng-sidebar>
 </ng-sidebar-container>
-<div id="myDIV" class="jumbotron jumbotron-fluid">
+<div id="myDIV" class="jumbotron jumbotron-fluid shadow-lg p-2 mb-2 bg-white">
   <div class="container">
-    <h1 class="display-4">Fluid jumbotron</h1>
-    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    <h4 class="display-5">Bienvenue Dans notre Portail !!!!</h4>
+    <h4 class="display-6">Decouvrez des lieux Extras autour de vous en un clic
+    </h4>
+    <p>Uploader votre prise de vue et laissez nous vous montrer les places magnifiques qui vous entours
+      <fa-icon [icon]=fasmile [styles]="{'stroke': 'gray', 'color': 'blue'}" size='1x'> </fa-icon>
+    </p>
   </div>
 </div>
 <div class="container-fluid">

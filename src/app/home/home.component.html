@@ -1,46 +1,50 @@
 ﻿<br>
-<section>
+<section id="Users" *ngIf="isadmin">
   <div class="row">
-    <div class="col-sm-12 col-md-2">
+    <div class="col-sm-12 col-md-3">
       <ul class="list-group-flush">
-        <li class="list-group-item shadow-lg mb-1">test</li>
-        <li class="list-group-item shadow-lg mb-1">test</li>
-        <li class="list-group-item shadow-lg mb-1">test</li>
-        <li class="list-group-item shadow-lg mb-1">test</li>
-        <li class="list-group-item shadow-lg mb-1">test</li>
-        <li class="list-group-item shadow-lg mb-1">test</li>
+        <li class="list-group-item shadow-lg mb-1 active">
+          Users
+        </li>
+        <li class="list-group-item shadow-lg mb-1" *ngFor="let user of users">
+          {{user.firstname}} &nbsp; {{user.lastname}} {{user.username}} &nbsp;
+          <a>
+            <fa-icon [icon]=fadetail [styles]="{'stroke': 'white', 'color': 'blue'}" size='1x'></fa-icon>
+          </a> &nbsp; &nbsp;
+          <a (click)="deleteUser(user.id)" class="ml-auto">
+            <fa-icon [icon]=fatrash [styles]="{'stroke': 'gray', 'color': 'red'}" size='1x'></fa-icon>
+          </a>
+        </li>
       </ul>
     </div>
-    <div class="col-sm-12 col-md-8">
+    <div class="col-sm-12 col-md-4">
+      <ul class="list-group-flush">
+        <li class="list-group-item shadow-lg mb-1 active">
+          Models
+        </li>
+        <li class="list-group-item shadow-lg mb-1" *ngFor="let model of models">
+          {{model.name}} &nbsp;
+          <a>&nbsp;
+            <fa-icon [icon]=fadetail [styles]="{'stroke': 'white', 'color': 'blue'}" size='1x'></fa-icon>
+          </a> &nbsp;
+          <a>&nbsp;
+            <fa-icon [icon]=faedit [styles]="{'stroke': 'white', 'color': 'blue'}" size='1x'></fa-icon>
+          </a> &nbsp;
+          <a class="mr-auto">
+            <fa-icon [icon]=fatrash [styles]="{'stroke': 'gray', 'color': 'red'}" size='1x'></fa-icon>
+          </a>
+      </li>
+      </ul>
+    </div>
+    <div class="col-sm-12 col-md-5">
+      <ul class="list-group-flush">
+        <li class="list-group-item shadow-lg mb-1 active">
+          Current Jobs
+        </li>
+        <li class="list-group-item shadow-lg mb-1" *ngFor="let model of models">
+          {{model.name}} &nbsp;
+      </li>
+      </ul>
     </div>
   </div>
 </section>
-
-<div>
-  <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
-  <button (click)="openModal('custom-modal-2')">Open Modal 2</button>
-</div>
-
-<jw-modal id="custom-modal-1">
-  <h1>A Custom Modal!</h1>
-  <button (click)="closeModal('custom-modal-1');">Close</button>
-</jw-modal>
-
-<jw-modal id="custom-modal-2">
-  <h1 style="height:1000px">A Tall Custom Modal!</h1>
-  <button (click)="closeModal('custom-modal-2');">Close</button>
-</jw-modal>
-<ul>
-    <li *ngFor="let user of users">
-        {{user.username}} ({{user.firstName}} {{user.lastName}})
-        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
-    </li>
-</ul>
-<!--
-<ul>
-    <li *ngFor="let model of models">
-        {{model.name}}
-    </li>
-</ul>
--->
-<button (click)="load()" class="btn btn-outline-warning nav-item nav-link">clikk</button>
