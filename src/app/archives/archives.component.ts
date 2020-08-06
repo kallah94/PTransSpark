@@ -3,6 +3,8 @@ import { SessionService } from '../_services/session.service';
 import { Photo } from '../photo';
 import { PHOTOS } from '../mock-photos';
 import { BatchSession } from '../_models/batch';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-archives',
@@ -28,16 +30,22 @@ export class ArchivesComponent implements OnInit {
     }) 
   }
 
-  onSelected(image: Photo): void {4200
+  onSelected(image: Photo): void {
     this.selectedPhoto  = image;
   }
 
-  private loadPOI(alt: number, long: number) {
-    this.sessionservice.loadPyspark()
-    .subscribe(res  => {
-      console.log(res)
-    })
-  }
+  loadPOI(long: string, lat: string) 
+{
+     this.sessionservice.loadPyspark()
+    .subscribe(res => {
+      this.batch = res;
+      this.batch.args = [lat, long, lat.concat(long)] 
+      this.batch.name = this.batch.name.concat(this.batch.args[2])
+  })
+  this.sessionservice.createBatche(this.batch)
+  .subscribe(res => {
+    console.log("ok", res)
+  })
 
-
+}
 }

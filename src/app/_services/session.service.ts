@@ -12,7 +12,7 @@ import { apiUrl } from '../apiUrl';
 export class SessionService {
   public resourceUrl = 'http://localhost:5000';
   constructor(protected http: HttpClient) {}
-
+  
   // Work
   create_session(user: ILivyUser): Observable<HttpResponse<ILivyUser>> {
     return this.http.post<ILivyUser>(`${this.resourceUrl}/loginSession`, user, { observe: 'response'});
@@ -46,8 +46,8 @@ export class SessionService {
     return this.http.get<GetBatches>(`${this.resourceUrl}/batches`, {observe: 'response'});
   }
 
-  createBatche(batche: IBatchSession): Observable<HttpResponse<IBatchSession>> {
-    return this.http.post<IBatchSession>(`${this.resourceUrl}/createBatche`, batche, { observe: 'response'});
+  createBatche(batche: BatchSession): Observable<HttpResponse<BatchSession>> {
+    return this.http.post<BatchSession>(`${this.resourceUrl}/createBatche`, batche, { observe: 'response'});
   }
 
   deleteBatche(id: number): Observable<HttpResponse<any>>{
@@ -77,4 +77,7 @@ export class SessionService {
     return this.http.get('assets/images.json');
   }
 
+  deleteModel() {
+    return this.http.get(`${apiUrl}/models/delete/pyspark`)
+  }
 }

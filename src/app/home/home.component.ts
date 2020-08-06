@@ -5,6 +5,7 @@ import { UserService, AuthenticationService } from '../_services';
 import { ModalService } from '../_modal/modal.service';
 import { SessionService } from '../_services/session.service';
 import * as fa from '@fortawesome/free-solid-svg-icons';
+import { GetBatches } from '../_models/getBaches';
 
 @Component({
     selector: 'app-home',
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
     bodyText: string;
     photos: [];
     isadmin: Boolean;
+    batches = new GetBatches();
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -64,13 +66,14 @@ export class HomeComponent implements OnInit {
                 console.log(users);
             });
     }
-/*
-    private loadAllModels() {
-        this.sessionService.getAllmodels()
-          .pipe(first())
-          .subscribe(models => this.models = models);
-      }
-*/
+
+    private allBatches() {
+        this.sessionService.getbaches()
+        .subscribe(res => {
+            this.batches = res.body;
+      });
+    }
+    
     public load() {
         this.sessionService.loadPyspark()
         .pipe(first())
@@ -80,6 +83,12 @@ export class HomeComponent implements OnInit {
           }
         );
       }
+    public deleteModel() {
+        this.sessionService.deleteModel()
+            .pipe(first())
+            .subscribe(() => this.loadAllModels());
+    }
+
     public openModal(id: string) {
         this.modalService.open(id);
     }
@@ -100,4 +109,6 @@ export class HomeComponent implements OnInit {
             console.log(this.models)
           });
       }
+
+    
 }

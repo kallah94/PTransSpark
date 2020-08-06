@@ -22,7 +22,7 @@ sc = spark.sparkContext
 
 schema2 = StructType([    StructField("geoname_id", IntegerType(), True),    StructField("POI_name", StringType(), True),    StructField("POI_asciiname", StringType(), True),    StructField("POI_alternatenames", StringType(), True),    StructField("POI_latitude", FloatType(), True),    StructField("POI_longitude", FloatType(), True),    StructField("feature_class", StringType(), True),    StructField("feature_code", StringType(), True),    StructField("country_code", StringType(), True),    StructField("cc2", StringType(), True),    StructField("admin1_code", StringType(), True),    StructField("admin2_code", StringType(), True),    StructField("admin3_code", StringType(), True),    StructField("admin4_code", StringType(), True),    StructField("population", IntegerType(), True),    StructField("elevation", IntegerType(), True),    StructField("dem", IntegerType(), True),    StructField("timezone", StringType(), True),    StructField("Modification_date", StringType(), True),    StructField("AdminCodes", StringType(), True)])
 
-df_POI_SN = spark.read.csv("../Lab/Web/PTransSpark/scripts/SN.txt", sep="\t", header=True, schema=schema2)
+df_POI_SN = spark.read.csv("../oulimata/PTransSpark/scripts/SN.txt", sep="\t", header=True, schema=schema2)
 df_POI_SN = df_POI_SN.drop(
     "feature_class",\
     "feature_code",\
@@ -39,7 +39,7 @@ df_POI_SN = df_POI_SN.drop(
     "Modification_date",\
     "AdminCodes")
 
-df_SN = spark.read.csv("../Lab/Web/PTransSpark/scripts/fichiertest.tsv", sep="\t", header=True)
+df_SN = spark.read.csv("../oulimata/PTransSpark/scripts/fichiertest.tsv", sep="\t", header=True)
 df_filtre = df_SN.filter(~df_SN["longitude"].isin(""))
 df_filtre = df_filtre.filter(~df_SN["latitude"].isin(""))
 df_filtre = df_filtre.filter(~df_SN["description"].isin(""))
@@ -77,8 +77,8 @@ def NeighboursItem(df):
 
 data = NeighboursItem(df_POI_SN)
 try:
-    with open('../data/data'+sys.argv[3]+'.json', 'a', encoding='utf-8') as f:
+    with open('../oulimata/PTransSpark/src/assets/data/'+sys.argv[3]+'.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 except:
-    print("file already existe !!!!")
+    print("une erreur est survenue !!!!")
 

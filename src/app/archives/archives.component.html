@@ -1,9 +1,7 @@
-<p>archives works!</p>
-
 <!--<div class="container" *ngFor="let photo of photos">
     <div class="row">
         <div class="col-sm-4">
-            <!--<div class="table-responstive" *ngFor="let photo of photos">-->
+            <div class="table-responstive" *ngFor="let photo of photos">-->
                 <!--<table class="table">
                     <div class="container">
                         <div class="row">
@@ -55,8 +53,8 @@
                                         </li>
                                     </ul>
                                     <ul>
-                                        <li>
-                                            <button class="btn btn-outline-primary">POI</button>
+                                        <li *ngIf = "photo.Longitude">
+                                            <button class="btn btn-outline-primary" (click)="loadPOI(photo.Longitude, photo.Latitude)">POI</button>
                                         </li>
                                     </ul>
                             

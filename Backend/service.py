@@ -47,14 +47,7 @@ def createBatche(posted_data):
     #   'file': '/home/devtool/Lab/Web/PTransSpark/scripts/somme.py',
      #  'args': [1, 29, '--sum']
     #}
-    if(posted_data['args'] == None) :
-      args = []
-    else:
-      args = posted_data['args'].split(' ')
 
-    posted_data['args'] = args
-    print(posted_data['args'])
-    print(args)
     r = requests.post(batchesUrl, data=json.dumps(posted_data), headers=headers)
     print(r.json())
     return r.json()

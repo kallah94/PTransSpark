@@ -11,7 +11,7 @@ import { DetailsComponent } from './archives/details/details.component';
 const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
     { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+    { path: 'register', component: RegisterComponent},
     {path: 'admin/newBatche', component: SessionsComponent, canActivate: [AuthGuard]},
     {path: 'batches', component: BatchehomeComponent, canActivate: [AuthGuard]},
     {path: 'modal', component: ModalComponent},

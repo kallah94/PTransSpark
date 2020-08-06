@@ -36,6 +36,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return loadpyspark();
                 case url.endsWith('/models') && method === 'GET':
                     return loadmodels();
+                case url.endsWith('/models/delete/pyspark') && method === 'GET':
+                     return deleteModel();
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -85,7 +87,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return unauthorized();
             }
             const model = models.find(x => x.name === 'Pyspark');
-            console.log('model ', model);
             if (!model) {
                 return error(' model pyspark not found ');
             }
@@ -120,6 +121,15 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
             users = users.filter(x => x.id !== idFromUrl());
             localStorage.setItem('users', JSON.stringify(users));
+            return ok();
+        }
+
+        function deleteModel() {
+            if (!isLoggedIn()) {
+                return unauthorized();
+            }
+            models = models.filter(x => x.name !== "Pyspark");
+            localStorage.setItem('models', JSON.stringify(models));
             return ok();
         }
 

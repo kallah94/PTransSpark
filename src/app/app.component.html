@@ -20,9 +20,9 @@
   <button (click)="logout()" class="btn btn-outline-danger nav-item nav-link">
     Logout <fa-icon [icon]='falogout'></fa-icon>
   </button>
-  <!--<button class="btn btn-outline-primary" style="margin-right: 0; margin-left: 11px;" (click)="_toggleSidebar()">
+  <button class="btn btn-outline-primary" style="margin-right: 0; margin-left: 11px;" (click)="_toggleSidebar()">
     <fa-icon [icon]="faatom"></fa-icon> Dashboard
-  </button>-->
+  </button>
 </nav>
 <ng-sidebar-container style="position:absolute" *ngIf="isAdmin">
   <ng-sidebar [(opened)]="_opened" position="right" mode="push" animate="true" closeOnClickOutside="true">

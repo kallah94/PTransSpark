@@ -47,7 +47,8 @@ def Allbatches():
 def create_batche():
   if request.method == 'POST':
     data = request.get_json()
-    return service.createBatche(data['file'])
+    print(data)
+    return service.createBatche(data)
 
 @app.route('/batches/'+str(0))
 def getbatche():
